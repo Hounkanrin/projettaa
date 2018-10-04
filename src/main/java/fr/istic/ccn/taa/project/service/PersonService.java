@@ -21,16 +21,17 @@ public class PersonService {
     }
 
     public Person createPerson(Person person){
-            this.personRepository.save(person);
-        return person;
+
+        List<Person> persons = personRepository.findByEmail(person.getEmail());
+
+        if(persons.size() == 0 && isValidEmailAddress(person.getEmail())){
+            return personRepository.save(person);
+        }
+        else{
+            return person;
+        }
     }
 
-    public Person displayProfil (String email){
-
-        return this.personRepository.findByEmail(email);
-    }
-
-    //Optionnal permet de retourner une personne si elle existe
     public Optional<Person> getPersonById (Long id){
 
         return this.personRepository.findById(id);
@@ -69,16 +70,9 @@ public class PersonService {
         return personToUpdate;
     }
 
-
-
-    public Person deletePerson(String email){
-        Person personToDelete = this.personRepository.findByEmail(email);
-
-        String message="";
-        if(personToDelete != null){
-            this.personRepository.delete(personToDelete);
-        }
-        return personToDelete;
+    public String deletePerson(Long id){
+        this.personRepository.deleteById(id);
+        return "Person deleted";
     }
 
     //other method
