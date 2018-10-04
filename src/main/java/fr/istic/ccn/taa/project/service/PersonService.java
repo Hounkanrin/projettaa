@@ -69,8 +69,6 @@ public class PersonService {
         return personToUpdate;
     }
 
-
-
     public Person deletePerson(String email){
         Person personToDelete = this.personRepository.findByEmail(email);
 
