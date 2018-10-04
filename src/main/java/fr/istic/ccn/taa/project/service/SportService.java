@@ -1,5 +1,6 @@
 package fr.istic.ccn.taa.project.service;
 
+import fr.istic.ccn.taa.project.model.Localisation;
 import fr.istic.ccn.taa.project.model.Sport;
 import fr.istic.ccn.taa.project.repository.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,11 @@ public class SportService {
     }
 
     public Sport addSport(Sport sport){
-       return sportRepository.save(sport);
+      List<Sport> list = sportRepository.findByName(sport.getName());
+        if( list.size() > 0 ) {
+            return sport;
+        } else
+            return sportRepository.save(sport);
     }
 
     public Sport updateSport(Sport sport) {
@@ -32,8 +37,14 @@ public class SportService {
             if (sportUpdate.getName() != null) {
                 sportUpdate.setName(sport.getName());
             }
-            if (sportUpdate.getLevel() != null) {
-                sportUpdate.setLevel(sport.getLevel());
+            if (sportUpdate.getLevel1() != null) {
+                sportUpdate.setLevel1(sport.getLevel1());
+            }
+            if (sportUpdate.getLevel2() != null) {
+                sportUpdate.setLevel2(sport.getLevel2());
+            }
+            if (sportUpdate.getLevel3() != null) {
+                sportUpdate.setLevel3(sport.getLevel3());
             }
             if (sportUpdate.getPersons() != null) {
                 sportUpdate.setPersons(sport.getPersons());
