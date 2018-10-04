@@ -28,7 +28,8 @@ public class LocalisationService {
         }
     }
 
-    public Optional<Localisation> getLocalisation(Long id){
+    public Optional<Localisation> getLocalisationById(Long id){
+
         return this.localisationRepository.findById(id);
     }
 
@@ -56,10 +57,6 @@ public class LocalisationService {
         return localisation;
     }
 
-    public Optional<Localisation> getLocalisationById(Long id){
-
-        return this.localisationRepository.findById(id);
-    }
     /**/
     public List<Localisation> getCity(String city){
         return this.localisationRepository.findByCity(city);
@@ -78,10 +75,5 @@ public class LocalisationService {
          this.localisationRepository.deleteById(id);
          return "Localisation deleted";
     }
-
-    public boolean existLocalisation(Long id){
-        return localisationRepository.existsById(id);
-    }
-
 
 }
