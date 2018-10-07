@@ -1,19 +1,22 @@
 package fr.istic.ccn.taa.project.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@ToString
 public class Localisation {
 
     private Long id;
     private String city;
     private String department;
     private String region;
-    private List<Person> persons;
     private List<Sport> sports;
+    private List<Choice> choices;
 
     public Localisation() {
     }
@@ -22,12 +25,13 @@ public class Localisation {
         this.city = city;
         this.department = department;
         this.region = region;
+        this.choices = new LinkedList<>();
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -35,7 +39,7 @@ public class Localisation {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {
@@ -43,7 +47,7 @@ public class Localisation {
     }
 
     public String getDepartment() {
-        return department;
+        return this.department;
     }
 
     public void setDepartment(String department) {
@@ -51,29 +55,29 @@ public class Localisation {
     }
 
     public String getRegion() {
-        return region;
+        return this.region;
     }
 
     public void setRegion(String region) {
         this.region = region;
     }
 
-    @ManyToMany(mappedBy = "localisations", cascade = CascadeType.PERSIST)
-    @JsonIgnore
-    public List<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
-    }
-
     @ManyToMany
     public List<Sport> getSports() {
-        return sports;
+        return this.sports;
     }
 
     public void setSports(List<Sport> sports) {
         this.sports = sports;
+    }
+
+    @OneToMany
+    @JsonIgnore
+    public List<Choice> getChoices() {
+        return this.choices;
+    }
+
+    public void setChoices(List<Choice> choices) {
+        this.choices = choices;
     }
 }

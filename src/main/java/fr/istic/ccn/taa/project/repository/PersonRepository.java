@@ -15,5 +15,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     public Person findById(String id);
 
-
 }
