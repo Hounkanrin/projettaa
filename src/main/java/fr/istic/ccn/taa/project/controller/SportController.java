@@ -19,6 +19,11 @@ public class SportController {
         return this.sportService.sportList();
     }
 
+    @GetMapping(value = "/{id}")
+    public Sport getSportById(@PathVariable Long id) {
+        return this.sportService.getSportById(id);
+    }
+
 
     @PostMapping(value = "/create")
     public Sport addSport(@RequestBody Sport sport) {

@@ -56,6 +56,10 @@ public class SportService {
         return sportToUpdate;
     }
 
+    public Sport getSportById(Long id) {
+        return this.sportRepository.findById(id).get();
+    }
+
 
     public String deleteSport(Long id) {
         this.sportRepository.deleteById(id);

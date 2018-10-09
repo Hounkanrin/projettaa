@@ -33,18 +33,19 @@ public class ChoiceService {
         return this.choiceRepository.findAll();
     }
 
-    public List<Choice> getChoicesByPerson(Person person) {
-
+    public List<Choice> getChoicesByPerson(Long id) {
+        Person person = this.personRepository.findById(id).get();
         return this.choiceRepository.findChoicesByPersonId(person.getId());
     }
 
-    public List<Choice> getChoicesBySport(Sport sport) {
-
+    public List<Choice> getChoicesBySport(Long id) {
+        Sport sport = this.sportRepository.findById(id).get();
         return this.choiceRepository.findChoicesBySportId(sport.getId());
     }
 
-    public List<Choice> getChoicesByPlace(Place place) {
-        return this.choiceRepository.findChoicesByPlacesContains(place);
+    public List<Choice> getChoicesByPlace(Long id) {
+        Place place = this.placeRepository.findById(id).get();
+        return this.choiceRepository.findChoicesByPlacesContains(place.getId());
     }
 
     public Choice addChoice(Choice choice) {

@@ -2,9 +2,6 @@ package fr.istic.ccn.taa.project.controller;
 
 
 import fr.istic.ccn.taa.project.model.Choice;
-import fr.istic.ccn.taa.project.model.Person;
-import fr.istic.ccn.taa.project.model.Place;
-import fr.istic.ccn.taa.project.model.Sport;
 import fr.istic.ccn.taa.project.repository.ChoiceRepository;
 import fr.istic.ccn.taa.project.service.ChoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,18 +42,18 @@ public class ChoiceController {
     }
 
     @GetMapping("/place")
-    public List<Choice> getChoiceByPlace(@RequestBody Place place) {
-        return this.choiceService.getChoicesByPlace(place);
+    public List<Choice> getChoiceByPlace(@PathVariable Long id) {
+        return this.choiceService.getChoicesByPlace(id);
     }
 
-    @GetMapping("/choice")
-    public List<Choice> getChoiceBySport(@RequestBody Sport sport) {
-        return this.choiceService.getChoicesBySport(sport);
+    @GetMapping("/sport/{id}")
+    public List<Choice> getChoiceBySport(@PathVariable Long id) {
+        return this.choiceService.getChoicesBySport(id);
     }
 
-    @GetMapping("/person")
-    public List<Choice> getChoiceByPerson(@RequestBody Person person) {
-        return this.choiceService.getChoicesByPerson(person);
+    @GetMapping("/person/{id}")
+    public List<Choice> getChoiceByPerson(@PathVariable Long id) {
+        return this.choiceService.getChoicesByPerson(id);
     }
 
 }
