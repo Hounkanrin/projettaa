@@ -8,35 +8,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/sports")
 public class SportController {
 
     @Autowired
     SportService sportService;
 
-    @GetMapping(value = "/sportlist")
-    public List<Sport> sportList(){
-        return sportService.sportList();
+    @GetMapping(value = "/")
+    public List<Sport> sportList() {
+        return this.sportService.sportList();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Sport getSportById(@PathVariable Long id) {
+        return this.sportService.getSportById(id);
     }
 
 
-    @PostMapping(value = "/addsport")
-    public Sport addSport(@RequestBody Sport sport){
-        return sportService.addSport(sport);
+    @PostMapping(value = "/create")
+    public Sport addSport(@RequestBody Sport sport) {
+        return this.sportService.addSport(sport);
     }
 
-    @PutMapping(value = "/updatesport")
-    public Sport updateSport(@RequestBody Sport sport){
-        return sportService.updateSport(sport);
+    @PutMapping(value = "/update")
+    public Sport updateSport(@RequestBody Sport sport) {
+        return this.sportService.updateSport(sport);
     }
 
-    @DeleteMapping(value = "/deletesport/{id}")
-    public String deleteSport(@PathVariable Long id){
-        return sportService.deleteSport(id);
+    @DeleteMapping(value = "/delete/{id}")
+    public String deleteSport(@PathVariable Long id) {
+        return this.sportService.deleteSport(id);
 
     }
-
-
-
 
 
 }
