@@ -1,12 +1,12 @@
 package fr.istic.ccn.taa.project.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Builder
@@ -18,7 +18,7 @@ public class Choice {
     private Person person;
     private Level level;
     private Sport sport;
-    private Localisation localisation;
+    private List<Place> places;
     private LocalDateTime choiceDate;
     private LocalDateTime lastUpdate;
 
@@ -42,7 +42,6 @@ public class Choice {
     }
 
     @OneToOne
-    @JsonIgnore
     public Person getPerson() {
         return this.person;
     }
@@ -69,13 +68,13 @@ public class Choice {
         this.sport = sport;
     }
 
-    @OneToOne
-    public Localisation getLocalisation() {
-        return this.localisation;
+    @ManyToMany(cascade = CascadeType.ALL)
+    public List<Place> getPlaces() {
+        return this.places;
     }
 
-    public void setLocalisation(Localisation localisation) {
-        this.localisation = localisation;
+    public void setPlaces(List<Place> places) {
+        this.places = places;
     }
 
     public LocalDateTime getChoiceDate() {

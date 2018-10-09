@@ -1,14 +1,16 @@
 package fr.istic.ccn.taa.project.service;
 
+import fr.istic.ccn.taa.project.model.Place;
 import fr.istic.ccn.taa.project.model.Sport;
 import fr.istic.ccn.taa.project.repository.SportRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@Slf4j
 public class SportService {
 
     @Autowired
@@ -28,22 +30,32 @@ public class SportService {
     }
 
     public Sport updateSport(Sport sport) {
-        Optional<Sport> sport1 = this.sportRepository.findById(sport.getId());
-        Sport sportUpdate = sport1.get();
-        if (sportUpdate != null) {
-            sportUpdate.getId();
+        Sport sportToUpdate = this.sportRepository.findById(sport.getId()).get();
 
-            if (sportUpdate.getName() != null) {
-                sportUpdate.setName(sport.getName());
+        if (sportToUpdate != null) {
+
+            if (sportToUpdate.getName() != null && sport.getName() != null && !sport.getName().isEmpty()) {
+                sportToUpdate.setName(sport.getName());
             }
-            
-            if (sportUpdate.getLocalisations() != null) {
-                sportUpdate.setLocalisations(sport.getLocalisations());
+            if (sportToUpdate.getPlaces() != null && sport.getPlaces() != null && !sportToUpdate.getPlaces().isEmpty() && !sport.getPlaces().isEmpty()) {
+                for (Place receivedPlace : sport.getPlaces()) {
+                    boolean found = false;
+                    for (Place currentPlace : sportToUpdate.getPlaces()) {
+                        if (currentPlace.getId() == receivedPlace.getId()) {
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        sportToUpdate.getPlaces().add(receivedPlace);
+                    }
+
+                }
             }
-            this.sportRepository.save(sport);
+            this.sportRepository.save(sportToUpdate);
         }
-        return sport;
+        return sportToUpdate;
     }
+
 
     public String deleteSport(Long id) {
         this.sportRepository.deleteById(id);

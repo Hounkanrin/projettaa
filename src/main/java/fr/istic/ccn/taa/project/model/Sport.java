@@ -1,9 +1,9 @@
 package fr.istic.ccn.taa.project.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,16 +12,17 @@ public class Sport {
 
     private Long id;
     private String name;
-    private List<Localisation> localisations;
+    private List<Place> places;
 
-    private List<Choice> choices;
 
     public Sport() {
-        super();
+        this.places = new ArrayList<>();
+
     }
 
     public Sport(String name) {
         this.name = name;
+        this.places = new ArrayList<>();
     }
 
 
@@ -43,22 +44,14 @@ public class Sport {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "sports", cascade = CascadeType.PERSIST)
-    public List<Localisation> getLocalisations() {
-        return this.localisations;
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    public List<Place> getPlaces() {
+        return this.places;
     }
 
-    public void setLocalisations(List<Localisation> localisations) {
-        this.localisations = localisations;
+    public void setPlaces(List<Place> places) {
+        this.places = places;
     }
 
-    @ManyToMany(mappedBy = "sport", cascade = CascadeType.ALL)
-    @JsonIgnore
-    public List<Choice> getChoices() {
-        return this.choices;
-    }
 
-    public void setChoices(List<Choice> choices) {
-        this.choices = choices;
-    }
 }

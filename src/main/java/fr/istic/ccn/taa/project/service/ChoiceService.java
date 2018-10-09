@@ -1,15 +1,13 @@
 package fr.istic.ccn.taa.project.service;
 
-import fr.istic.ccn.taa.project.model.Choice;
-import fr.istic.ccn.taa.project.model.Localisation;
-import fr.istic.ccn.taa.project.model.Person;
-import fr.istic.ccn.taa.project.model.Sport;
+import fr.istic.ccn.taa.project.model.*;
 import fr.istic.ccn.taa.project.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -23,7 +21,7 @@ public class ChoiceService {
     private PersonRepository personRepository;
 
     @Autowired
-    private LocalisationRepository localisationRepository;
+    private PlaceRepository placeRepository;
 
     @Autowired
     private SportRepository sportRepository;
@@ -45,15 +43,63 @@ public class ChoiceService {
         return this.choiceRepository.findChoicesBySportId(sport.getId());
     }
 
-    public List<Choice> getChoicesByLocalisation(Localisation localisation) {
-        return this.choiceRepository.findChoicesByLocalisationId(localisation.getId());
+    public List<Choice> getChoicesByPlace(Place place) {
+        return this.choiceRepository.findChoicesByPlacesContains(place);
     }
 
     public Choice addChoice(Choice choice) {
 
+        List<Place> places = new LinkedList<>();
+        for (Place place : choice.getPlaces()) {
+            places.add(this.placeRepository.findById(place.getId()).get());
+        }
+        choice.setPlaces(places);
+
+        Person person = this.personRepository.findById(choice.getPerson().getId()).get();
+        choice.setPerson(person);
+
+        Level level = this.levelRepository.findById(choice.getLevel().getId()).get();
+        choice.setLevel(level);
+
+        Sport sport = this.sportRepository.findById(choice.getSport().getId()).get();
+        choice.setSport(sport);
+
         choice.setChoiceDate(LocalDateTime.now());
         choice.setLastUpdate(LocalDateTime.now());
         return this.choiceRepository.save(choice);
+    }
+
+    public Choice getChoiceById(Long id) {
+        return this.choiceRepository.findById(id).get();
+    }
+
+    public Choice updateChoice(Choice choice) {
+        Choice existingChoice = this.choiceRepository.findById(choice.getId()).get();
+        if (existingChoice.getPerson().getId() == choice.getPerson().getId()) {
+            if (existingChoice.getSport() != null && choice.getSport() != null) {
+                existingChoice.setSport(this.sportRepository.findById(choice.getSport().getId()).get());
+            }
+            if (existingChoice.getLevel() != null && choice.getLevel() != null) {
+                existingChoice.setLevel(this.levelRepository.findById(choice.getLevel().getId()).get());
+            }
+            if (existingChoice.getPlaces() != null && choice.getPlaces() != null && !existingChoice.getPlaces().isEmpty() && !choice.getPlaces().isEmpty()) {
+                for (Place place : choice.getPlaces()) {
+                    boolean found = false;
+                    for (Place currPlace : existingChoice.getPlaces()) {
+                        if (currPlace.getId() == place.getId()) {
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        existingChoice.getPlaces().add(place);
+                    }
+                }
+                this.choiceRepository.save(existingChoice);
+
+            }
+
+        }
+        return existingChoice;
     }
 
 }
