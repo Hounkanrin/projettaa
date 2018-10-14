@@ -1,8 +1,9 @@
 package fr.istic.ccn.taa.project.model;
 
-import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Person {
@@ -11,10 +12,12 @@ public class Person {
     private String firstname;
     private String lastname;
     private String email;
-    private List<Sport> sports;
-    private List<Localisation> localisations;
 
     public Person() {
+        this.lastname = "";
+        this.firstname = "";
+        this.email = "";
+
     }
 
     public Person(String firstname, String lastname, String email) {
@@ -27,7 +30,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -35,7 +38,7 @@ public class Person {
     }
 
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -43,7 +46,7 @@ public class Person {
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public void setLastname(String lastname) {
@@ -51,28 +54,12 @@ public class Person {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    @ManyToMany
-    public List<Sport> getSports() {
-        return sports;
-    }
 
-    public void setSports(List<Sport> sports) {
-        this.sports = sports;
-    }
-
-    @ManyToMany
-    public List<Localisation> getLocalisations() {
-        return localisations;
-    }
-
-    public void setLocalisations(List<Localisation> localisations) {
-        this.localisations = localisations;
-    }
 }
