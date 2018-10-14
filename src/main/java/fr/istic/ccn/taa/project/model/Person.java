@@ -1,6 +1,7 @@
 package fr.istic.ccn.taa.project.model;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ public class Person {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+
     }
 
     @Id
