@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/sports")
 public class SportController {
 
     @Autowired
     SportService sportService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public List<Sport> sportList() {
         return this.sportService.sportList();
     }
