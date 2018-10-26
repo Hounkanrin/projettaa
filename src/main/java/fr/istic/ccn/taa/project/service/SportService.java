@@ -61,9 +61,16 @@ public class SportService {
     }
 
 
-    public String deleteSport(Long id) {
+    /*public String deleteSport(Long id) {
         this.sportRepository.deleteById(id);
         return "deleted";
+    }*/
+
+    public boolean deleteSport(Long id) {
+        boolean deleted = false;
+        this.sportRepository.deleteById(id);
+        deleted = true;
+        return deleted;
     }
 
 

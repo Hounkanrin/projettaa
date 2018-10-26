@@ -50,7 +50,7 @@ public class PlaceController {
     /**/
 
     @DeleteMapping(value = "/delete/{id}")
-    public String deletePlace(@PathVariable("id") Long id) {
+    public boolean deletePlace(@PathVariable("id") Long id) {
         return this.placeService.deletePlace(id);
     }
 }
