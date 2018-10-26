@@ -58,6 +58,7 @@ public class PersonController {
      */
     @DeleteMapping(value = "delete/{id}")
     public boolean deletePerson(@PathVariable("id") Long id) {
+
         return this.personService.deletePerson(id);
     }
 }

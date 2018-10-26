@@ -15,7 +15,7 @@ public class SportController {
     @Autowired
     SportService sportService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public List<Sport> sportList() {
         return this.sportService.sportList();
     }
