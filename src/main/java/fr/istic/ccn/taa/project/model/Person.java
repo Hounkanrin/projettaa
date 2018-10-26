@@ -12,6 +12,9 @@ public class Person {
     private String firstname;
     private String lastname;
     private String email;
+    private String password;
+    private int role;
+    private String image;
 
     public Person() {
         this.lastname = "";
@@ -20,12 +23,21 @@ public class Person {
 
     }
 
-    public Person(String firstname, String lastname, String email) {
+    public Person(String firstname, String lastname, String email, String password, String image) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-
+        this.password = password;
+        this.role = 0;
+        this.image = image;
     }
+
+//    public Person(String firstname, String lastname, String email) {
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+//
+//    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,6 +71,30 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

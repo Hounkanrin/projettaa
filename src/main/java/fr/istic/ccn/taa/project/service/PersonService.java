@@ -28,6 +28,7 @@ public class PersonService {
         if (persons.size() == 0 && isValidEmailAddress(person.getEmail())) {
             return this.personRepository.save(person);
         } else {
+            System.err.println("L'adresse email utilisée existe déjà");
             return person;
         }
     }
@@ -57,14 +58,28 @@ public class PersonService {
                 personToUpdate.setEmail(person.getEmail());
             }
 
+            if (personToUpdate.getPassword() != null){
+                personToUpdate.setPassword((person.getPassword()));
+            }
+
+            if (personToUpdate.getImage() != null) {
+                personToUpdate.setImage(person.getImage());
+            }
+
             this.personRepository.save(personToUpdate);
         }
         return personToUpdate;
     }
 
-    public String deletePerson(Long id) {
+//    public String deletePerson(Long id) {
+//        this.personRepository.deleteById(id);
+//        return "Person deleted";
+//    }
+    public boolean deletePerson(Long id) {
+        boolean deleted = false;
         this.personRepository.deleteById(id);
-        return "Person deleted";
+        deleted = true;
+        return deleted;
     }
 
     //other method
