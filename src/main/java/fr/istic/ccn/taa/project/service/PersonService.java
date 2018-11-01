@@ -1,7 +1,10 @@
 package fr.istic.ccn.taa.project.service;
 
+import fr.istic.ccn.taa.project.model.Choice;
 import fr.istic.ccn.taa.project.model.Person;
+import fr.istic.ccn.taa.project.repository.ChoiceRepository;
 import fr.istic.ccn.taa.project.repository.PersonRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +15,13 @@ import java.util.Optional;
 
 //control de logique
 @Service
+@Slf4j
 public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
+    @Autowired
+    ChoiceRepository choiceRepository;
 
     public List<Person> getPersons() {
         return this.personRepository.findAll();
@@ -58,7 +64,7 @@ public class PersonService {
                 personToUpdate.setEmail(person.getEmail());
             }
 
-            if (personToUpdate.getPassword() != null){
+            if (personToUpdate.getPassword() != null) {
                 personToUpdate.setPassword((person.getPassword()));
             }
 
@@ -71,15 +77,22 @@ public class PersonService {
         return personToUpdate;
     }
 
-//    public String deletePerson(Long id) {
-//        this.personRepository.deleteById(id);
-//        return "Person deleted";
-//    }
+
     public boolean deletePerson(Long id) {
         boolean deleted = false;
-        this.personRepository.deleteById(id);
-        deleted = true;
+        Person person = this.personRepository.findById(id).get();
+        List<Choice> choiceList = this.choiceRepository.findChoicesByPersonId(person.getId());
+        if (choiceList != null) {
+            for (Choice choice : choiceList) {
+                this.choiceRepository.deleteById(choice.getId());
+            }
+            if (this.choiceRepository.findChoicesByPersonId(person.getId()).size() == 0) {
+                this.personRepository.deleteById(id);
+                deleted = true;
+            }
+        }
         return deleted;
+
     }
 
     //other method
