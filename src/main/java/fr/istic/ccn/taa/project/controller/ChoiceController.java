@@ -17,9 +17,6 @@ public class ChoiceController {
     @Autowired
     private ChoiceService choiceService;
 
-    @Autowired
-    private ChoiceRepository choiceRepository;
-
     @GetMapping("/")
     public List<Choice> getAll() {
         return this.choiceService.getAll();
@@ -56,5 +53,6 @@ public class ChoiceController {
     public List<Choice> getChoiceByPerson(@PathVariable Long id) {
         return this.choiceService.getChoicesByPerson(id);
     }
+
 
 }

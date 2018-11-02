@@ -1,6 +1,8 @@
 package fr.istic.ccn.taa.project.service;
 
+import fr.istic.ccn.taa.project.model.Choice;
 import fr.istic.ccn.taa.project.model.Person;
+import fr.istic.ccn.taa.project.repository.ChoiceRepository;
 import fr.istic.ccn.taa.project.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    ChoiceRepository choiceRepository;
 
     public List<Person> getPersons() {
         return this.personRepository.findAll();
@@ -42,6 +47,7 @@ public class PersonService {
 
         Optional<Person> personGetId = this.personRepository.findById(person.getId());
         Person personToUpdate = personGetId.get();
+
 
         if (personToUpdate != null) {
             personToUpdate.getId();
@@ -75,8 +81,10 @@ public class PersonService {
 //        this.personRepository.deleteById(id);
 //        return "Person deleted";
 //    }
-    public boolean deletePerson(Long id) {
+
+        public boolean deletePerson(Long id) {
         boolean deleted = false;
+
         this.personRepository.deleteById(id);
         deleted = true;
         return deleted;
