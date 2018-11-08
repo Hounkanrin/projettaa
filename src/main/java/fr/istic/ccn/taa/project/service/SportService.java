@@ -2,6 +2,7 @@ package fr.istic.ccn.taa.project.service;
 
 import fr.istic.ccn.taa.project.model.Place;
 import fr.istic.ccn.taa.project.model.Sport;
+import fr.istic.ccn.taa.project.repository.PlaceRepository;
 import fr.istic.ccn.taa.project.repository.SportRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class SportService {
 
     @Autowired
     SportRepository sportRepository;
+
+    @Autowired
+    PlaceRepository placeRepository;
 
     public List<Sport> sportList() {
         return this.sportRepository.findAll();
@@ -59,12 +63,6 @@ public class SportService {
     public Sport getSportById(Long id) {
         return this.sportRepository.findById(id).get();
     }
-
-
-    /*public String deleteSport(Long id) {
-        this.sportRepository.deleteById(id);
-        return "deleted";
-    }*/
 
     public boolean deleteSport(Long id) {
         boolean deleted = false;

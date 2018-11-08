@@ -111,4 +111,17 @@ public class PersonService {
         }
         return result;
     }
+
+  /*  public User getUser(Long id) {
+        User user = new User();
+        Person person = this.personRepository.findById(id).get();
+        if (person != null) {
+            user.setEmail() = person.getEmail();
+            user.setEmail() = person.getPassword();
+            user.getRole() = person.getRole();
+        }
+        return user;
+    }
+
+*/
 }
