@@ -3,6 +3,7 @@ package fr.istic.ccn.taa.project.controller;
 import fr.istic.ccn.taa.project.model.Person;
 import fr.istic.ccn.taa.project.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class PersonController {
     PersonService personService;
 
     @GetMapping("/")
+    @PreAuthorize("hasRole('USER')")
     public List<Person> getPersons() {
         List<Person> personList = this.personService.getPersons();
         return personList;
