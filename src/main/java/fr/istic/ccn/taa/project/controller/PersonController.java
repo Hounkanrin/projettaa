@@ -32,7 +32,7 @@ public class PersonController {
 
     @PutMapping(value = "/update")
     public Person updatePerson(@RequestBody Person person) {
-
+        System.err.println("pass par la");
         String message = null;
         Person personToUpdate = this.personService.updatePerson(person);
         if (personToUpdate != null) {

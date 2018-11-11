@@ -39,7 +39,8 @@ public class PersonService {
     }
 
     public Person updatePerson(Person person) {
-
+        System.err.println("pass par la");
+         System.err.println(person.getEmail());
         Optional<Person> personGetId = this.personRepository.findById(person.getId());
         Person personToUpdate = personGetId.get();
 
