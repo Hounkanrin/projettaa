@@ -17,7 +17,6 @@ public class Person {
     private String email;
     private String password;
     private int role;
-    private String image;
 
     public Person() {
         this.lastname = "";
@@ -26,13 +25,12 @@ public class Person {
 
     }
 
-    public Person(String firstname, String lastname, String email, String password, String image) {
+    public Person(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.role = 0;
-        this.image = image;
     }
 
 //    public Person(String firstname, String lastname, String email) {
@@ -84,20 +82,12 @@ public class Person {
         this.password = password;
     }
 
-    public String getImage() {
-        return this.image;
-    }
-
     public int getRole() {
         return this.role;
     }
 
     public void setRole(int role) {
         this.role = role;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
 

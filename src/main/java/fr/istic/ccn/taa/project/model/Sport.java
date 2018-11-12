@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @ToString
+@NamedEntityGraph(name = "all", includeAllAttributes = true)
 public class Sport {
 
     private Long id;

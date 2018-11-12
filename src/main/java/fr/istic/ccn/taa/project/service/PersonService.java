@@ -68,10 +68,6 @@ public class PersonService {
                 personToUpdate.setPassword((person.getPassword()));
             }
 
-            if (personToUpdate.getImage() != null) {
-                personToUpdate.setImage(person.getImage());
-            }
-
             this.personRepository.save(personToUpdate);
         }
         return personToUpdate;
