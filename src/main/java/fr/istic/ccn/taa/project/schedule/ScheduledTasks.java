@@ -44,7 +44,7 @@ public class ScheduledTasks {
     private static final String pays = "fr";
 
 
-    @Scheduled(cron="0 4 1 * * MON")
+    @Scheduled(cron="0 0 0 * * TUE-WED")
     public void reportCurrentTime(){
         log.info("The time is now {}", dateFormat.format((new Date())));
         //récupération de la liste des choix existant en BDD
