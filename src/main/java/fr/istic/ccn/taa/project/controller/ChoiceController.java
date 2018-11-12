@@ -57,4 +57,10 @@ public class ChoiceController {
         return this.choiceService.getChoicesByPerson(id);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteChoice(@PathVariable Long id) {
+        return this.choiceService.deleteChoice(id);
+    }
 }
+
+

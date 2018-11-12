@@ -37,10 +37,9 @@ public class SportController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public String deleteSport(@PathVariable Long id) {
+    public boolean deleteSport(@PathVariable Long id) {
         return this.sportService.deleteSport(id);
 
     }
-
 
 }

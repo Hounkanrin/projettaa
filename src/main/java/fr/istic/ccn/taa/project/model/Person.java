@@ -1,11 +1,14 @@
 package fr.istic.ccn.taa.project.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
 public class Person {
 
     private Long id;
@@ -14,22 +17,19 @@ public class Person {
     private String email;
     private String password;
     private int role;
-    private String image;
 
     public Person() {
         this.lastname = "";
         this.firstname = "";
         this.email = "";
-
     }
 
-    public Person(String firstname, String lastname, String email, String password, String image) {
+    public Person(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.role = 0;
-        this.image = image;
     }
 
 //    public Person(String firstname, String lastname, String email) {
@@ -74,27 +74,19 @@ public class Person {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getImage() {
-        return image;
-    }
-
     public int getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(int role) {
         this.role = role;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
 

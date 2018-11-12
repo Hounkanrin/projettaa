@@ -3,8 +3,6 @@ package fr.istic.ccn.taa.project.controller;
 import fr.istic.ccn.taa.project.model.Person;
 import fr.istic.ccn.taa.project.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,11 +50,10 @@ public class PersonController {
         return this.personService.getPersonById(id);
     }
 
-
     /**
      * TO DO
      */
-    @DeleteMapping(value = "delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public boolean deletePerson(@PathVariable("id") Long id) {
 
         return this.personService.deletePerson(id);

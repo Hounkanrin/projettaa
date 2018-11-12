@@ -103,4 +103,11 @@ public class ChoiceService {
         return existingChoice;
     }
 
+    public boolean deleteChoice(Long id) {
+        boolean deleted = false;
+        this.choiceRepository.deleteById(id);
+        deleted = true;
+        return deleted;
+    }
+
 }

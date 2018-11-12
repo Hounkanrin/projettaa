@@ -58,9 +58,11 @@ public class PlaceService {
 
     /**/
 
-    public String deletePlace(Long id) {
+    public boolean deletePlace(Long id) {
+        boolean deleted = false;
         this.placeRepository.deleteById(id);
-        return "Place deleted";
+        deleted = true;
+        return deleted;
     }
 
 }
