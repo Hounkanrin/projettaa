@@ -22,7 +22,6 @@ public class Person {
         this.lastname = "";
         this.firstname = "";
         this.email = "";
-
     }
 
     public Person(String firstname, String lastname, String email, String password) {
