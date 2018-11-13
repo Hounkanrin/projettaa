@@ -78,7 +78,7 @@ public class PersonService {
         boolean deleted = false;
         Person person = this.personRepository.findById(id).get();
         List<Choice> choiceList = this.choiceRepository.findChoicesByPersonId(person.getId());
-        if (choiceList != null) {
+        if (choiceList.size() > 0) {
             for (Choice choice : choiceList) {
                 this.choiceRepository.deleteById(choice.getId());
             }
