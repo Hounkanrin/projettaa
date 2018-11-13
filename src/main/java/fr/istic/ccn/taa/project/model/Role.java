@@ -18,4 +18,8 @@ public class Role {
     private Long id;
     private String name;
     private String description;
+
+    public Role(final String name) {
+        this.name = name;
+    }
 }

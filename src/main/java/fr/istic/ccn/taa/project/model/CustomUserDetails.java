@@ -16,7 +16,6 @@ public class CustomUserDetails extends Person implements UserDetails {
                 person.getEmail(),
                 person.getPassword(),
                 person.getUsername(),
-                person.getImage(),
                 person.getRoles());
     }
 
