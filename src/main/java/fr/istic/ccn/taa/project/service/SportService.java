@@ -33,6 +33,7 @@ public class SportService {
             return this.sportRepository.save(sport);
     }
 
+
     public Sport updateSport(Sport sport) {
         Sport sportToUpdate = this.sportRepository.findById(sport.getId()).get();
 
