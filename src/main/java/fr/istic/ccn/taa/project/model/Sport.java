@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @ToString
+@NamedEntityGraph(name = "all", includeAllAttributes = true)
 public class Sport {
 
     private Long id;
@@ -45,6 +46,7 @@ public class Sport {
     }
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    //@ManyToMany
     public List<Place> getPlaces() {
         return this.places;
     }

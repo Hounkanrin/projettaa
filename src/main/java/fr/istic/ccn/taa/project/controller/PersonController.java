@@ -61,7 +61,6 @@ public class PersonController {
         return this.personService.getPersonById(id);
     }
 
-
     /**
      * TO DO
      */

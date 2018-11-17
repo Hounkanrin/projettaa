@@ -42,4 +42,9 @@ public class SportController {
 
     }
 
+    @GetMapping(value = "/sport/{name}")
+    public boolean getSportByName(@PathVariable String name) {
+        return this.sportService.getSportByName(name);
+    }
+
 }
