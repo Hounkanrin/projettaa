@@ -46,6 +46,7 @@ public class Sport {
     }
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    //@ManyToMany
     public List<Place> getPlaces() {
         return this.places;
     }
