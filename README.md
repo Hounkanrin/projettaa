@@ -12,7 +12,7 @@ où ils peuvent pratiquer leurs sports favoris.
 Créer une base de données de type mysql nommée de "projet_taa".
 Le serveur. La mecanique de JPA/Hibernate se chargera de creer les tables.      
 
-Ce lien vous permet de pleupler la base de donnée dans   
+Ce lien vous permet de peupler la base de donnée dans   
 phpMyAdmin.  
 
 1.2 Lancer l'application côté front 
