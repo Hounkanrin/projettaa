@@ -20,6 +20,11 @@ public class SportController {
         return this.sportService.sportList();
     }
 
+    @GetMapping(value = "/forLogin")
+    public List<Sport> sportListForLogin() {
+        return this.sportService.sportList();
+    }
+
     @GetMapping(value = "/{id}")
     public Sport getSportById(@PathVariable Long id) {
         return this.sportService.getSportById(id);
