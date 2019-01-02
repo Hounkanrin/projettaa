@@ -16,7 +16,7 @@ public class PlaceController {
     @Autowired
     PlaceService placeService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Place> getPlace() {
         return this.placeService.getPlaces();
     }
