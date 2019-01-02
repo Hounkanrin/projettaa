@@ -3,6 +3,7 @@ package fr.istic.ccn.taa.project.controller;
 import fr.istic.ccn.taa.project.model.Sport;
 import fr.istic.ccn.taa.project.service.SportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class SportController {
 
 
     @PostMapping(value = "/create")
+    @PreAuthorize(" hasRole('ADMIN')")
     public Sport addSport(@RequestBody Sport sport) {
         return this.sportService.addSport(sport);
     }
@@ -42,6 +44,7 @@ public class SportController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
+    @PreAuthorize(" hasRole('ADMIN')")
     public boolean deleteSport(@PathVariable Long id) {
         return this.sportService.deleteSport(id);
 

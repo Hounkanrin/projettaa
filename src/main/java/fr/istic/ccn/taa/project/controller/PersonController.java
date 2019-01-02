@@ -20,7 +20,7 @@ public class PersonController {
     PersonService personService;
 
     @GetMapping("/")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Person> getPersons() {
         List<Person> personList = this.personService.getPersons();
         return personList;
@@ -38,7 +38,7 @@ public class PersonController {
     }
 
     @PutMapping(value = "/update")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public Person updatePerson(@RequestBody Person person) {
 
         String message = null;
@@ -55,7 +55,7 @@ public class PersonController {
      * Exemple à suivre
      **/
     @GetMapping(value = "/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public Optional<Person> getPersonById(@PathVariable(value = "id") Long id) {
 
         return this.personService.getPersonById(id);
@@ -65,7 +65,7 @@ public class PersonController {
      * TO DO
      */
     @DeleteMapping(value = "/delete/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public boolean deletePerson(@PathVariable("id") Long id) {
 
         return this.personService.deletePerson(id);
