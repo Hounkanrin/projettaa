@@ -23,9 +23,12 @@ public class Person {
     private String email;
     private String password;
     private String username;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "person_roles", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinTable(name = "person_roles", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
+
 
   /*  public Person() {
         this.lastname = "";
