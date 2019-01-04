@@ -1,24 +1,36 @@
 package fr.istic.ccn.taa.project.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
-    private int role;
+    private String username;
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinTable(name = "person_roles", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
 
-    public Person() {
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+
+  /*  public Person() {
         this.lastname = "";
         this.firstname = "";
         this.email = "";
@@ -45,7 +57,7 @@ public class Person {
         return this.id;
     }
 
-    public void setId(Long id) {
+  /*  public void setId(Long id) {
         this.id = id;
     }
 
@@ -87,7 +99,7 @@ public class Person {
 
     public void setRole(int role) {
         this.role = role;
-    }
+    }*/
 
 
 }

@@ -33,6 +33,7 @@ public class SportService {
             return this.sportRepository.save(sport);
     }
 
+
     public Sport updateSport(Sport sport) {
         Sport sportToUpdate = this.sportRepository.findById(sport.getId()).get();
 
@@ -71,8 +72,12 @@ public class SportService {
         return deleted;
     }
 
-    public Sport getSportDataById(Long id, String name){
-        return sportRepository.findByIdAndName(id,name);
+    public Sport getSportDataById(Long id, String name) {
+        return this.sportRepository.findByIdAndName(id, name);
+    }
+
+    public boolean getSportByName(String name) {
+        return this.sportRepository.findSportByName(name);
     }
 
 }

@@ -3,6 +3,7 @@ package fr.istic.ccn.taa.project.controller;
 import fr.istic.ccn.taa.project.model.Place;
 import fr.istic.ccn.taa.project.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,18 +17,21 @@ public class PlaceController {
     @Autowired
     PlaceService placeService;
 
-    @GetMapping("/")
+    @GetMapping("")
+
     public List<Place> getPlace() {
         return this.placeService.getPlaces();
     }
 
     @PostMapping(value = "/create")
+    @PreAuthorize(" hasRole('ADMIN')")
     public Place addPlace(@RequestBody Place place) {
 
         return this.placeService.createPlace(place);
     }
 
     @PutMapping(value = "/update")
+    @PreAuthorize(" hasRole('ADMIN')")
     public Place updatePlace(@RequestBody Place place) {
 
         String message = null;

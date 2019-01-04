@@ -45,7 +45,8 @@ public class Sport {
         this.name = name;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    //@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany
     public List<Place> getPlaces() {
         return this.places;
     }
