@@ -1,32 +1,38 @@
-Application Week end 
+#Application Week end 
 
-
-Projet de gestion d'une application de planification des activités du week sport d'un utlisateur.
-
-L'application avertie les utilisateurs des meilleurs endroits, en fonction de la meteo  
+L'application permet de la planification des activités du week sport d'un utlisateur.
+Elle avertie les utilisateurs, enregistrés, des meilleurs endroits, en fonction de la meteo  
 où ils peuvent pratiquer leurs sports favoris.
-
-Cette application de gestion des activités du week-end d'un utilisateur.    
-Cette application lui permet de d'être averti des meilleurs endroits, en fonction de la meteo  où il peut faire ses sports favoris.
-
 
 1 Lancement de l'application
 
 1.1 Créer la base de données        
-Créer une base de données de type mysql nommée de "projet_taa".
-Le serveur. La mecanique de JPA/Hibernate se chargera de creer les tables.      
-
-Ce lien vous permet de peupler la base de donnée dans   
-phpMyAdmin.  
-
-1.2 Lancer l'application côté front 
-Récuperer sur le git, la partie front avec ce lien:https://github.com/Hounkanrin/weekendtaa. 
-Lancer l'application côté front, en faisant npm install et ng serve-- open. L'application démarre sur le port 4200. 
+   -Créer une base de données de type mysql. 
+    Ce <a href="https://itx-technologies.com/fr/blog/2108-installer-et-acceder-a-phpmyadmin-sous-ubuntu">lien</a> pourra vous aider.    
     
+   -Après la création de la base de données, dans un terminal,      
+         entrez les commandes suivantes:    
+         <i>sudo su</i> (mettre votre mot de passe administrateur)  
+         <i>/opt/lammp/lammp start</i>          
+         
+         <i>Ce aperçu vous indique que votre base de données à bien démarré</i>
+         root@beugre-HP-EliteBook-840-G3:/home/beugre# /opt/lampp/lampp start
+         Starting XAMPP for Linux 7.2.9-0...
+         XAMPP: Starting Apache...already running.
+         XAMPP: Starting MySQL...already running.
+         XAMPP: Starting ProFTPD...already running.
+                
+   -Dans le navigateur, taper le lien http://localhost/phpmyadmin/ pour acceder à phpmyadmin.   
+   
+   -Une fois sur phpmyadmin, crée une base de données nommée "projet_taa", puis importer le fichier  projet_taa.sql     
+   (présent à la racine du projet) qui permet de peupler la base de données
+   
+NB: Pour les informations sur la base de données, vous pouvez consulter le fichier application.properties.
 
-2. Scenario d'utilisation
-Une fois que l'application est lancée côté back-end et front-end, vous avez la possibilité de vous enregistrer avec         
-vos préférences en matière de sport.        
-Une fois cela fait, chaque mercredi vous recevrez un email entre le mardi et le mercredi à partir de minuit qui vous        
-informera des lieux propices de vos sports favoris.     
+1.2 Exécution du projet côté back end      
+    L'exécution du back end permet de mettre en marche le serveur de l'application  
+    
+1.3 Exécution du projet côté front end  
+Le front de l'application se trouve sur ce <a href="https://github.com/Hounkanrin/weekendtaa">lien</a>.     
 
+    
