@@ -130,10 +130,7 @@ public class PersonService {
     }
 
 
-    //other method
-    public boolean existPerson(String email) {
-        return this.personRepository.findByEmail(email) != null;
+    public Optional<Person> getPersonEmail(String email) {
+        return this.personRepository.findByEmail(email);
     }
-
-
 }
