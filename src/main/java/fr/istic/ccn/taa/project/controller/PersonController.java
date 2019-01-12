@@ -71,7 +71,8 @@ public class PersonController {
         return this.personService.deletePerson(id);
     }
 
-    @GetMapping(value = "{email}")
+    @GetMapping(value = "forLogin/{email}")
+    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public Optional<Person> getPersonEmail(@PathVariable("email") String email) {
         return this.personService.getPersonEmail(email);
     }

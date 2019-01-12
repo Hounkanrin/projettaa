@@ -21,7 +21,7 @@ public class SportController {
         return this.sportService.sportList();
     }
 
-    @GetMapping(value = "/forLogin")
+    @GetMapping(value = "/")
     public List<Sport> sportListForLogin() {
         return this.sportService.sportList();
     }
